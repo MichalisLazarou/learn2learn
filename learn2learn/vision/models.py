@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+ls#!/usr/bin/env python3
 
 """
 **Description**
@@ -243,27 +243,6 @@ class MiniImagenetCNN(nn.Module):
     """
 
     def __init__(self, output_size, hidden_size=32, layers=4):
-        super(MiniImagenetCNN, self).__init__()
-        self.base = ConvBase(output_size=hidden_size,
-                             hidden=hidden_size,
-                             channels=3,
-                             max_pool=True,
-                             layers=layers,
-                             max_pool_factor=4 // layers)
-        self.linear = nn.Linear(25 * hidden_size, output_size, bias=True)
-        maml_init_(self.linear)
-        self.hidden_size = hidden_size
-
-    def forward(self, x):
-        x = self.base(x)
-        x = self.linear(x.view(-1, 25 * self.hidden_size))
-        return x
-
-
-#same as miniImagenetCNN to learn the latent space/conditioned on the gradients,
-# used size 64 like LEO encoder
-class TransformerCNN(nn.Module):
-    def __init__(self, output_size = 64, hidden_size=32, layers=4):
         super(MiniImagenetCNN, self).__init__()
         self.base = ConvBase(output_size=hidden_size,
                              hidden=hidden_size,
