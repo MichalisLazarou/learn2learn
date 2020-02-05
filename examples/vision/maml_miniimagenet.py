@@ -103,7 +103,7 @@ def main(
                                       task_transforms=test_transforms,
                                       num_tasks=600)
 
-    # Create model
+    # Create model CNNmaml
     model = l2l.vision.models.MiniImagenetCNN(ways)
     model.to(device)
     maml = l2l.algorithms.MAML(model, lr=fast_lr, first_order=False)
