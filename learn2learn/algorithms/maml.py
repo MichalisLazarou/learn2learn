@@ -182,7 +182,9 @@ class MAML(BaseLearner):
             except RuntimeError:
                 traceback.print_exc()
                 print('learn2learn: Maybe try with allow_nograd=True and/or allow_unused=True ?')
-
+        print(len(gradients))
+        for i in range(len(gradients)):
+            print(gradients[i].size())
         # Update the module
         self.module = maml_update(self.module, self.lr, gradients)
 
